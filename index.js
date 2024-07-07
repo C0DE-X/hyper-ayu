@@ -63,22 +63,25 @@ exports.decorateConfig = (config) => {
         background: ${backgroundColor} !important;
       }
       .splitpane_divider {
-        background-color: rgba(130, 128, 184, 0.5) !important;
+        background-color: ${backgroundColor} !important;
       }
       .tab_tab {
         border: 0;
         background: ${inactiveTabBackgroundColor};
+            background-color: ${inactiveTabBackgroundColor} !important;
       }
       .tabs_list {
         background: ${inactiveTabBackgroundColor};
       }
       .tab_active {
-        background-color: ${backgroundColor};
+        background-color: ${backgroundColor} !important;
       }
       .tab_textActive {
         background-color: ${backgroundColor};
-        box-shadow: inset 2px 0 0 ${YELLOW};
       }
+      .tabs_nav .tabs_list .tab_active .tab_text {
+			  border-bottom: 2px solid ${YELLOW};
+		  }
       ${windowControlsCSS}
     `
   })
