@@ -62,26 +62,41 @@ exports.decorateConfig = (config) => {
       .header_header {
         background: ${backgroundColor} !important;
       }
-      .splitpane_divider {
-        background-color: ${backgroundColor} !important;
-      }
-      .tab_tab {
-        border: 0;
-        background: ${inactiveTabBackgroundColor};
-            background-color: ${inactiveTabBackgroundColor} !important;
-      }
+      .splitpane_divider { 
+            background-color: ${DARK_GRAY} !important;
+            opacity: 0.4
+       }
       .tabs_list {
         background: ${inactiveTabBackgroundColor};
       }
       .tab_active {
         background-color: ${backgroundColor} !important;
       }
-      .tab_textActive {
-        background-color: ${backgroundColor};
-      }
-      .tabs_nav .tabs_list .tab_active .tab_text {
-			  border-bottom: 2px solid ${YELLOW};
-		  }
+		.tab_tab::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			right: 0;
+			height: 2px;
+			background-color: ${YELLOW};
+			transform: scaleX(0);
+      transform-origin: left;
+			will-change: transform;
+		}
+		.tab_tab.tab_active::before {
+      left: 0;
+			transform: scaleX(1);
+			transition: all 200ms cubic-bezier(0, 0, 0.2, 1);
+		}
+      .tab_text, .term_term {
+			opacity: 0.6;
+			will-change: opacity;
+	   	}
+	  	.tab_active .tab_text, .term_active .term_term {
+			opacity: 1;
+			transition: opacity 0.12s ease-in-out;
+		}
       ${windowControlsCSS}
     `
   })
